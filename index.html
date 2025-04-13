@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Preview Resizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-8 text-gray-800">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <!-- Settings panel -->
+    <div>
+      <h1 class="text-2xl font-bold mb-4">Image Preview Resizer For SD</h1>
+
+      <!-- Loading image -->
+      <div class="mb-4">
+        <label class="block font-medium">Upload image:</label>
+        <input type="file" id="imageInput" accept="image/*" class="mt-1" />
+      </div>
+
+      <!-- Area field -->
+      <div class="mb-4">
+        <label class="block font-medium">Area (px): <span id="areaSpan"></span></label>
+        <input type="range" id="areaSlider" min="10000" max="4000000" step="100" value="1048576" class="w-full" />
+        <input type="number" min="10000" max="4000000" step="100" value="1048576" id="areaInput"
+          class="w-full border px-3 py-2 rounded mt-1" />
+      </div>
+
+      <!-- Width -->
+      <div class="mb-4">
+        <label class="block font-medium mb-1">Width (px): <span id="widthSpan"></span></label>
+        <div class="flex gap-2 items-center">
+          <input type="range" id="widthSlider" min="1" max="2048" value="1024" class="flex-1" />
+          <input type="number" id="widthInput" min="1" max="2048" value="1024" class="w-24 border rounded px-2 py-1" />
+          <button id="copyWidthBtn" class="bg-gray-300 hover:bg-gray-400 text-sm px-2 py-1 rounded">📋</button>
+        </div>
+      </div>
+
+      <!-- Height -->
+      <div class="mb-4">
+        <label class="block font-medium mb-1">Height (px): <span id="heightSpan"></span></label>
+        <div class="flex gap-2 items-center">
+          <input type="range" id="heightSlider" min="1" max="2048" value="1024" class="flex-1" />
+          <input type="number" id="heightInput" min="1" max="2048" value="1024" class="w-24 border rounded px-2 py-1" />
+          <button id="copyHeightBtn" class="bg-gray-300 hover:bg-gray-400 text-sm px-2 py-1 rounded">📋</button>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <button id="swapBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+          🔁 Swap width and height
+        </button>
+      </div>
+
+      <!-- Ratio -->
+      <div class="mb-4">
+        <label class="block font-medium">Aspect ratio (W/H): <span id="aspectLabel">1.00</span></label>
+        <select id="aspectPreset" class="mt-1 border px-3 py-2 rounded">
+          <option value="">— Choose —</option>
+          <option value="16/9">16:9</option>
+          <option value="4/3">4:3</option>
+          <option value="1/1">1:1</option>
+          <option value="3/2">3:2</option>
+        </select>
+      </div>
+
+      <button onclick="reset()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Reset
+      </button>
+    </div>
+
+    <!-- Preview -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Preview</h2>
+      <canvas id="previewCanvas" width="400" height="400" class="border shadow bg-white"></canvas>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
